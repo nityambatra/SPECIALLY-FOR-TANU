@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Tanu 💗</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+body{
+  overflow:hidden;
+  color:#5b3b50;
+  background:linear-gradient(135deg,#fff1f7,#f8edff,#eaf7ff);
+}
+
+.page{
+  display:none;
+  min-height:100vh;
+  padding:28px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+}
+
+.page.active{
+  display:flex;
+}
+
+.card{
+  width:min(92vw,650px);
+  padding:42px 28px;
+  border-radius:32px;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(14px);
+  box-shadow:0 20px 70px rgba(150,100,150,.18);
+}
+
+h1{
+  font-size:clamp(2rem,8vw,4.3rem);
+  margin:10px 0;
+  color:#a84d7d;
+}
+
+p{
+  font-size:1.1rem;
+  line-height:1.6;
+}
+
+.emoji{
+  font-size:clamp(4rem,18vw,8rem);
+  animation:float 2.5s ease-in-out infinite;
+}
+
+button{
+  border:0;
+  border-radius:999px;
+  padding:14px 27px;
+  margin:10px;
+  font-size:1rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 8px 25px rgba(100,60,100,.12);
+}
+
+.yes{
+  background:#ff8fbd;
+  color:white;
+}
+
+.no{
+  background:#fff;
+  color:#87536f;
+  border:1px solid #f0c7da;
+}
+
+button:hover{
+  transform:translateY(-3px);
+}
+
+.hearts{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+
+.heart{
+  position:absolute;
+  animation:rise 8s linear infinite;
+  opacity:.45;
+}
+
+.thanks{
+  font-size:.9rem;
+  line-height:1.8;
+  color:#8c5874;
+  max-height:62vh;
+  overflow:hidden;
+}
+
+#proposalArea{
+  position:relative;
+  min-height:130px;
+}
+
+#runNo{
+  position:relative;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-12px);
+  }
+}
+
+@keyframes rise{
+  from{
+    transform:translateY(110vh) rotate(0);
+    opacity:0;
+  }
+
+  20%{
+    opacity:.5;
+  }
+
+  to{
+    transform:translateY(-15vh) rotate(360deg);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<!-- PAGE 1 -->
+<section class="page active" id="p1">
+
+<div class="card">
+
+<div class="emoji">💗🌸</div>
+
+<h1>Ek chhoti si baat...</h1>
+
+<p>
+Thoda sa cute sa surprise hai.<br>
+Ready ho? 🥺
+</p>
+
+<button class="yes" onclick="go(2)">
+Start ✨
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 2 -->
+<section class="page" id="p2">
+
+<div class="card">
+
+<div class="emoji">🫶</div>
+
+<h1>
+Kya aapka naam Tanu hai? 🌷
+</h1>
+
+<div id="nameChoices">
+
+<button class="yes" onclick="go(3)">
+Yes 💗
+</button>
+
+<button class="no" onclick="showOzzie()">
+No 🙈
+</button>
+
+</div>
+
+<p id="ozzie" style="display:none">
+Achhaaa... kya aapka naam Ozzie hai? 👀
+</p>
+
+<button
+id="ozYes"
+class="yes"
+style="display:none"
+onclick="go(3)"
+>
+Yes 🥹
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 3 -->
+<section class="page" id="p3">
+
+<div class="card">
+
+<div class="emoji">💌</div>
+
+<h1>
+I love you, Tanu 💗
+</h1>
+
+<p>
+Ek baar dil ki baat pooch sakta hoon? 🥺
+</p>
+
+<h1 style="font-size:clamp(1.7rem,7vw,3.2rem)">
+Will you be my GF? 🌸
+</h1>
+
+<div id="proposalArea">
+
+<button class="yes" onclick="go(4)">
+Yes 🥺💗
+</button>
+
+<button
+class="no"
+id="runNo"
+onclick="runAway()"
+>
+No 🙈
+</button>
+
+</div>
+
+<p
+id="plea"
+style="display:none;font-weight:700"
+>
+Mere kuchu puchu, please haan kar do 🥺💗
+<br>
+I really love you! 🌸
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 4 -->
+<section class="page" id="p4">
+
+<div class="card">
+
+<div class="emoji">🥹💗✨</div>
+
+<h1>
+Thank you, Tanu! 🌷
+</h1>
+
+<p>
+That means a lot. 💕
+</p>
+
+<div class="thanks" id="thanks"></div>
+
+</div>
+
+</section>
+
+
+<script>
+
+function go(n){
+
+document
+.querySelectorAll(".page")
+.forEach(x => x.classList.remove("active"));
+
+document
+.getElementById("p"+n)
+.classList.add("active");
+
+}
+
+
+function showOzzie(){
+
+document.getElementById("ozzie").style.display="block";
+
+document.getElementById("ozYes").style.display="inline-block";
+
+document.getElementById("nameChoices").style.display="none";
+
+}
+
+
+let noClicks=0;
+
+const noTexts=[
+
+"No 🙈",
+
+"Are you sure? 🥺",
+
+"Soch lo na 😭",
+
+"Itna bhi kya gussa 😭💗",
+
+"Last chance madam ji 👀",
+
+"Bas ab YES bacha hai 🥹💗"
+
+];
+
+
+function runAway(){
+
+noClicks++;
+
+const b=document.getElementById("runNo");
+
+const area=document.getElementById("proposalArea");
+
+
+if(noClicks < 6){
+
+b.textContent=noTexts[noClicks];
+
+b.style.position="absolute";
+
+b.style.left=(10+Math.random()*70)+"%";
+
+b.style.top=(10+Math.random()*70)+"px";
+
+}
+
+else{
+
+b.remove();
+
+document.getElementById("plea").style.display="block";
+
+const y=document.createElement("button");
+
+y.className="yes";
+
+y.textContent="YES 🥺💗";
+
+y.onclick=()=>go(4);
+
+area.appendChild(y);
+
+}
+
+}
+
+
+/* Floating hearts */
+
+const h=document.getElementById("hearts");
+
+for(let i=0;i<22;i++){
+
+const s=document.createElement("span");
+
+s.className="heart";
+
+s.textContent=["💗","♡","🌸","✨"][i%4];
+
+s.style.left=Math.random()*100+"%";
+
+s.style.animationDelay=(Math.random()*8)+"s";
+
+s.style.fontSize=(14+Math.random()*22)+"px";
+
+h.appendChild(s);
+
+}
+
+
+/* 100 thank-you messages */
+
+document.getElementById("thanks").innerHTML=
+
+Array(100)
+
+.fill(
+
+"Thanks for accepting my proposal, madam ji 💗 I love you 🌸"
+
+)
+
+.join(" · ");
+
+</script>
+
+</body>
+</html>
